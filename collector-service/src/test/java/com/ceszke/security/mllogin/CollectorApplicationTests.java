@@ -1,4 +1,4 @@
-package com.ceszke.security.mllogin.collector;
+package com.ceszke.security.mllogin;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
