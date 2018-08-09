@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: collector-service
+  cloud:
+    config:
+#      uri: http://${CONFIG_SERVER_HOST:localhost}:8888
+#      fail-fast: true
+      enabled: false
+  output:
+    ansi:
+      enabled: ALWAYS
+

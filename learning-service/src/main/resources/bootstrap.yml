@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: learning-service
+  output:
+    ansi:
+      enabled: ALWAYS
