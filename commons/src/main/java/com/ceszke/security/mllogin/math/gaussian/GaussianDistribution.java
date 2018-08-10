@@ -1,11 +1,11 @@
-package com.ceszke.security.mllogin.function;
+package com.ceszke.security.mllogin.math.gaussian;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class GaussianParams {
+public class GaussianDistribution {
 
     private int mu;
 

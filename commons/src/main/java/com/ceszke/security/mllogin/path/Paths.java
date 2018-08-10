@@ -1,4 +1,4 @@
-package com.ceszke.security.mlloging.path;
+package com.ceszke.security.mllogin.path;
 
 public interface Paths {
     interface LoginValidatorPaths {

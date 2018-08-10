@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.ceszke.security.mlloging.path.Paths.LoginValidatorPaths.PasswordTypingTimeValidatorPaths.typingTimeParam;
-import static com.ceszke.security.mlloging.path.Paths.LoginValidatorPaths.PasswordTypingTimeValidatorPaths.passwordTypingTimeValidator;
+import static com.ceszke.security.mllogin.path.Paths.LoginValidatorPaths.PasswordTypingTimeValidatorPaths.typingTimeParam;
+import static com.ceszke.security.mllogin.path.Paths.LoginValidatorPaths.PasswordTypingTimeValidatorPaths.passwordTypingTimeValidator;
 
 @AllArgsConstructor
 @RestController("/"+ passwordTypingTimeValidator)

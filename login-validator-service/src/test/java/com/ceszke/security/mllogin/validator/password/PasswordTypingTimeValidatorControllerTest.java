@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import static com.ceszke.security.mlloging.path.Paths.LoginValidatorPaths.PasswordTypingTimeValidatorPaths.passwordTypingTimeValidator;
-import static com.ceszke.security.mlloging.path.Paths.LoginValidatorPaths.PasswordTypingTimeValidatorPaths.typingTimeParam;
+import static com.ceszke.security.mllogin.path.Paths.LoginValidatorPaths.PasswordTypingTimeValidatorPaths.passwordTypingTimeValidator;
+import static com.ceszke.security.mllogin.path.Paths.LoginValidatorPaths.PasswordTypingTimeValidatorPaths.typingTimeParam;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
