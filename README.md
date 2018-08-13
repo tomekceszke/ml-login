@@ -1,6 +1,6 @@
 # ml-login (PoC)
 [![Build Status](https://travis-ci.org/tomekceszke/ml-login.svg?branch=master)](https://travis-ci.org/tomekceszke/ml-login)
-[![HitCount](http://hits.dwyl.io/Naereen/badges.svg)](http://hits.dwyl.io/Naereen/badges)
+[![HitCount](http://hits.dwyl.io/tomekceszke/ml-login.svg)](http://hits.dwyl.io/tomekceszke/ml-login)
 
 #### PoC: improve login security by learning and checking additional features like typing speed
 
