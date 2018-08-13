@@ -7,6 +7,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 // @Slf4j
+
+/**
+ * Function to compute the Gaussian pdf (probability density function)
+ */
 public class GaussianDistributionUtilsTest {
 
     @Test

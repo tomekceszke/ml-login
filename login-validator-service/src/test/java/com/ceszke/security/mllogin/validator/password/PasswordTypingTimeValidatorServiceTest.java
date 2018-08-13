@@ -1,5 +1,6 @@
 package com.ceszke.security.mllogin.validator.password;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.stream.Stream;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PasswordTypingTimeValidatorServiceTest {
