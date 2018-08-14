@@ -2,6 +2,8 @@
 
 #### PoC: improve login security by learning and checking additional features like typing speed - anomaly detection
 
+![login](doc/img/login.png)
+
 This distributed application is responsible for:
 * collecting training data: `collector-service`
 * learning process - algorithm: anomaly detection based on _Gaussian Probability Density Function_:  `learning-service`
