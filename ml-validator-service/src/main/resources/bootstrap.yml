@@ -1,8 +1,8 @@
 server:
-  port: 8083
+  port: 8081
 spring:
   application:
-    name: learning-service
+    name: ml-validator-service
   output:
     ansi:
       enabled: ALWAYS

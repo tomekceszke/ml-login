@@ -1,5 +1,6 @@
 package com.ceszke.security.mllogin.math.gaussian;
 
+import com.ceszke.security.mllogin.dto.GaussianDistribution;
 import org.junit.Test;
 
 import static com.ceszke.security.mllogin.math.gaussian.GaussianDistributionUtils.*;

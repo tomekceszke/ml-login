@@ -7,15 +7,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CollectorApplicationTests {
+public class LoginApplicationTest {
+
 
     @Test
-    public void contextLoads() {
+    public void applicationContextLoaded() {
     }
 
     @Test
     public void applicationContextTest() {
-        CollectorApplication.main(new String[]{});
+        LoginApplication.main(new String[]{});
     }
 
 }

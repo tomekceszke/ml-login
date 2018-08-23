@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: login-validator-service
-  output:
-    ansi:
-      enabled: ALWAYS

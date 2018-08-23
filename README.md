@@ -1,4 +1,4 @@
-# ml-login (PoC)
+# ml-login
 
 #### PoC: improve login security by learning and checking additional features like typing speed - anomaly detection
 
@@ -27,9 +27,10 @@ tbd
 
 ## TODO
 - prepare GUI:
-    - login page https://getbootstrap.com/docs/4.1/examples/floating-labels/
+    - login page ✔
     - integrate with Spring Security
-- screenshots    
+- screenshots ✔  
+- `collector-service` api 
 - basic use case...    
 - validation of the input (request) data (in controllers)
 - exception handling

@@ -1,5 +1,7 @@
 package com.ceszke.security.mllogin.math.gaussian;
 
+import com.ceszke.security.mllogin.dto.GaussianDistribution;
+
 public class GaussianDistributionUtils {
 
     public static double[] getProbability(int mu, int sigma2, int...data) {
