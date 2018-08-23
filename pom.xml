@@ -33,7 +33,6 @@
         <!--<module>gateway</module>-->
         <module>commons</module>
         <module>collector-service</module>
-        <module>login-validator-service</module>
         <module>learning-service</module>
         <module>login-service</module>
         <module>ml-validator-service</module>

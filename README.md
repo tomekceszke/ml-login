@@ -39,7 +39,7 @@ tbd
 - validation of the input (request) data (in controllers)
 - introduce exception handling ✔
 - commons - split, refactor, clean up    
-- introduce eureka and config clients/server
+- introduce ribbon, zuul, eureka and config clients/server
 - extract configuration
 - clean up maven poms (introduce hierarchy)    
 - refactor: service names
