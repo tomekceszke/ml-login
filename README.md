@@ -22,6 +22,7 @@ tbd
 - H2 (in memory database)
 - Open Feign (rest client)
 - JUnit, Spring MVC Test
+- Thymeleaf
 - Twitter Bootstrap
 - Lombok
 - Maven
@@ -45,6 +46,7 @@ tbd
 - refactor: service names
 - introduce wiremock and integrational tests (multi services)
 - write more tests
+- replace Thymeleaf by any modern frontend framework (angular/react/vue?)
 - prepare Live demo    
     
     
