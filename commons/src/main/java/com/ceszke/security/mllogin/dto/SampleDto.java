@@ -13,8 +13,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class SampleDto implements Serializable {
 
-    private Long id;
-
     private int speed;
 
 }

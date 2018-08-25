@@ -16,9 +16,9 @@ public class GaussianDistributionUtilsTest {
 
     @Test
     public void getProbabilityTest() {
-        GaussianDistribution learntGaussianDistribution = getGaussianDistribution(new int[]{0, 1, 2, 2, 3, 3, -4, 2});
-        assertTrue(getProbability(learntGaussianDistribution, 100) < getProbability(learntGaussianDistribution, 5));
-        assertTrue(getProbability(learntGaussianDistribution, -6) > getProbability(learntGaussianDistribution, 50));
+        GaussianDistribution learnedGaussianDistribution = getGaussianDistribution(new int[]{0, 1, 2, 2, 3, 3, -4, 2});
+        assertTrue(getProbability(learnedGaussianDistribution, 100) < getProbability(learnedGaussianDistribution, 5));
+        assertTrue(getProbability(learnedGaussianDistribution, -6) > getProbability(learnedGaussianDistribution, 50));
     }
 
     @Test

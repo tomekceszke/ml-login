@@ -4,7 +4,7 @@ import com.ceszke.security.mllogin.dto.GaussianDistribution;
 
 public class GaussianDistributionUtils {
 
-    public static double[] getProbability(int mu, int sigma2, int...data) {
+    public static double[] getProbabilityForMultipleSamples(int mu, int sigma2, int...data) {
         double[] p = new double[data.length];
         for (int i = 0; i < data.length; i++) {
             double factor1 = 1 / Math.sqrt(2 * Math.PI * sigma2);
@@ -14,11 +14,15 @@ public class GaussianDistributionUtils {
         return p;
     }
 
-    public static double getProbability(GaussianDistribution gaussianDistribution, int data) {
-        return getProbability(gaussianDistribution.getMu(), gaussianDistribution.getSigma2(), data)[0];
+    public static double getProbability(int mu, int sigma2, int data) {
+        return getProbabilityForMultipleSamples(mu, sigma2, data)[0];
     }
 
-    static GaussianDistribution getGaussianDistribution(int[] data) {
+    public static double getProbability(GaussianDistribution gaussianDistribution, int data) {
+        return getProbabilityForMultipleSamples(gaussianDistribution.getMu(), gaussianDistribution.getSigma2(), data)[0];
+    }
+
+    public static GaussianDistribution getGaussianDistribution(int[] data) {
         int mu = mean(data);
         int sigma2 = variance(data, mu);
         return GaussianDistribution.builder().mu(mu).sigma2(sigma2).build();

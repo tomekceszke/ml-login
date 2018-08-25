@@ -40,4 +40,4 @@ spring:
         trace: false
         web-allow-others: false
 
-ml.required.samples: 50
+ml.required.samples: 5

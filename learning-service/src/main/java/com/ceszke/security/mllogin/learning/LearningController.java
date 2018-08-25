@@ -1,6 +1,6 @@
 package com.ceszke.security.mllogin.learning;
 
-import com.ceszke.security.mllogin.dto.LearnedModel;
+import com.ceszke.security.mllogin.dto.LearnedModelDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +18,7 @@ public class LearningController {
 
     @GetMapping("/model")
     @ResponseStatus(OK)
-    public LearnedModel getLearnedModel() {
+    public LearnedModelDto getLearnedModel() {
         return learningService.getLearnedModel();
     }
 

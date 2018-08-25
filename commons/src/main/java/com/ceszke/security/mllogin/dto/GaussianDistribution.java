@@ -1,11 +1,15 @@
 package com.ceszke.security.mllogin.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Builder
 @Data
-public class GaussianDistribution {
+@AllArgsConstructor
+public class GaussianDistribution implements Serializable {
 
     private int mu;
 

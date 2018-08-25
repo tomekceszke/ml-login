@@ -7,9 +7,11 @@ import java.io.Serializable;
 
 @Data
 @Builder
-public class LearnedModel implements Serializable {
+public class LearnedModelDto implements Serializable {
 
-    private int epsilon;
+    private double epsilon;
 
-    private GaussianDistribution gaussianDistribution;
+    private int mu;
+
+    private int sigma2;
 }
