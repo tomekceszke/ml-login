@@ -35,13 +35,14 @@ tbd
 - screenshots ✔  
 - `collector-service` api ✔
 - basic use case...
-- implement algorithm for choosing `ε` in `learning-service`
+- implement algorithm for choosing `ε` in `learning-service` ✔
 - implement algorithm for model's evaluation in `learning-service`    
 - validation of the input (request) data (in controllers)
 - introduce exception handling ✔
 - commons - split, refactor, clean up    
 - introduce ribbon, zuul, eureka and config clients/server
 - extract configuration
+- extract paths
 - clean up maven poms (introduce hierarchy)    
 - refactor: service names
 - introduce wiremock and integrational tests (multi services)
