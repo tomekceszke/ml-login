@@ -2,16 +2,14 @@
  [![Build Status](https://travis-ci.org/tomekceszke/ml-login.svg?branch=master)](https://travis-ci.org/tomekceszke/ml-login)
 #### PoC: improve login security by learning and checking additional features like typing speed
  
-More info: [Anomaly detection using the multivariate gaussian distribution](https://www.coursera.org/lecture/machine-learning/anomaly-detection-using-the-multivariate-gaussian-distribution-DnNr9)
-
-
 ![login](doc/img/login.png)
 
 This distributed application is responsible for:
 * collecting training data: `collector-service`
-* anomaly detection based on _Gaussian Probability Density Function_: `learning-service`
+* [anomaly detection using the multivariate gaussian distribution](https://www.coursera.org/lecture/machine-learning/anomaly-detection-using-the-multivariate-gaussian-distribution-DnNr9) (bases only on basic mathematical operations): `learning-service`
 * validating password basing on features like typing speed: `ml-validator-service`
 * authenticating user: `login-service`
+  
 
 ## Live demo
 tbd
