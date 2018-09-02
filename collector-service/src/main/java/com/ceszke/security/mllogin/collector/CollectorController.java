@@ -1,6 +1,5 @@
 package com.ceszke.security.mllogin.collector;
 
-import com.ceszke.security.mllogin.dto.SampleDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,7 @@ public class CollectorController {
 
     @GetMapping("/")
     @ResponseStatus(OK)
-    public List<SampleDto> getSamples() {
+    public List<Integer> getSamples() {
         return collectorService.getSamples();
     }
 

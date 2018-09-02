@@ -2,7 +2,13 @@ package com.ceszke.security.mllogin.math.gaussian;
 
 import com.ceszke.security.mllogin.dto.GaussianDistribution;
 
+import java.util.List;
+
 public class GaussianUtils {
+
+    public static double[] getProbability(GaussianDistribution gaussianDistribution, List<Integer> x) {
+        return getProbability(gaussianDistribution.getMu(), gaussianDistribution.getSigma2(), x.stream().mapToInt(i -> i).toArray());
+    }
 
     public static double[] getProbability(int mu, int sigma2, int... x) {
         double[] p = new double[x.length];
@@ -26,12 +32,11 @@ public class GaussianUtils {
         return getProbability(gaussianDistribution.getMu(), gaussianDistribution.getSigma2(), x);
     }
 
-    public static double[] getProbability(int... x) {
-        GaussianDistribution gaussianDistribution = getGaussianDistribution(x);
-        return getProbability(gaussianDistribution.getMu(), gaussianDistribution.getSigma2(), x);
+    public static GaussianDistribution getGaussianDistribution(List<Integer> x) {
+        return getGaussianDistribution(x.stream().mapToInt(i -> i).toArray());
     }
 
-    public static GaussianDistribution getGaussianDistribution(int[] x) {
+    private static GaussianDistribution getGaussianDistribution(int[] x) {
         int mu = mean(x);
         int sigma2 = variance(x, mu);
         return GaussianDistribution.builder().mu(mu).sigma2(sigma2).build();

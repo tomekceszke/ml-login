@@ -1,7 +1,6 @@
 package com.ceszke.security.mllogin.client;
 
 
-import com.ceszke.security.mllogin.dto.SampleDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -14,5 +13,5 @@ public interface CollectorClient {
     boolean isReadyToDetect();
 
     @GetMapping("/")
-    List<SampleDto> getSamples();
+    List<Integer> getSamples();
 }

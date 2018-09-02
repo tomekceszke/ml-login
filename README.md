@@ -1,6 +1,9 @@
 # ml-login
+ [![Build Status](https://travis-ci.org/tomekceszke/ml-login.svg?branch=master)](https://travis-ci.org/tomekceszke/ml-login)
+#### PoC: improve login security by learning and checking additional features like typing speed
+ 
+More info: [Anomaly detection using the multivariate gaussian distribution](https://www.coursera.org/lecture/machine-learning/anomaly-detection-using-the-multivariate-gaussian-distribution-DnNr9)
 
-#### PoC: improve login security by learning and checking additional features like typing speed - anomaly detection
 
 ![login](doc/img/login.png)
 
@@ -26,7 +29,7 @@ tbd
 - Twitter Bootstrap
 - Lombok
 - Maven
-- Travis CI: [![Build Status](https://travis-ci.org/tomekceszke/ml-login.svg?branch=master)](https://travis-ci.org/tomekceszke/ml-login)
+- Travis CI
 
 ## TODO
 - prepare GUI:
@@ -40,6 +43,7 @@ tbd
 - validation of the input (request) data (in controllers)
 - introduce exception handling ✔
 - commons - split, refactor, clean up    
+- introduce `-client` modules
 - introduce ribbon, zuul, eureka and config clients/server
 - extract configuration
 - extract paths

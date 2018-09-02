@@ -1,25 +1,26 @@
 package com.ceszke.security.mllogin.math.threshold;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ThresholdUtils {
 
-    public static double selectEpsilon(double[] p, boolean[] y) {
+    public static double selectEpsilon(Map<Double, Boolean> trainingData) {
         double bestEpsilon = 0;
         double bestF1 = 0;
-        double minValidation = Arrays.stream(p).min().getAsDouble();
-        double maxValidation = Arrays.stream(p).max().getAsDouble();
+        Set<Double> p = trainingData.keySet();
+        List<Boolean> y = new ArrayList<>(trainingData.values());
+        double minValidation = p.stream().min(Double::compareTo).get();
+        double maxValidation = p.stream().max(Double::compareTo).get();
         double step = (maxValidation - minValidation) / 1000;
 
         for (double epsilon = minValidation; epsilon < maxValidation; epsilon += step) {
             List<Boolean> predictions = getPredictions(p, epsilon);
-            double sumFN = getSum(i -> !predictions.get(i) && y[i], predictions.size());
-            double sumFP = getSum(i -> predictions.get(i) && !y[i], predictions.size());
-            double sumTP = getSum(i -> predictions.get(i) && y[i], predictions.size());
+            double sumFN = getSum(i -> !predictions.get(i) && y.get(i), predictions.size());
+            double sumFP = getSum(i -> predictions.get(i) && !y.get(i), predictions.size());
+            double sumTP = getSum(i -> predictions.get(i) && y.get(i), predictions.size());
             double precision = sumTP / (sumTP + sumFP);
             double recall = sumTP / (sumTP + sumFN);
             double divisor = precision + recall;
@@ -39,7 +40,7 @@ public class ThresholdUtils {
         return IntStream.range(0, size).filter(intPredicate).count();
     }
 
-    private static List<Boolean> getPredictions(double[] p, double epsilon) {
-        return Arrays.stream(p).mapToObj(validationSample -> validationSample < epsilon).collect(Collectors.toList());
+    private static List<Boolean> getPredictions(Set<Double> p, double epsilon) {
+        return p.stream().map(validationSample -> validationSample < epsilon).collect(Collectors.toList());
     }
 }

@@ -1,10 +1,8 @@
 package com.ceszke.security.mllogin.collector;
 
 import com.ceszke.security.mllogin.client.LearningClient;
-import com.ceszke.security.mllogin.dto.SampleDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -46,8 +44,8 @@ public class CollectorService {
         }
     }
 
-    public List<SampleDto> getSamples() {
-        return collectorRepository.findAll().stream().map(sample -> new ModelMapper().map(sample, SampleDto.class)).collect(Collectors.toList());
+    public List<Integer> getSamples() {
+        return collectorRepository.findAll().stream().map(Sample::getSpeed).collect(Collectors.toList());
     }
 
 }

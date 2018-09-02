@@ -13,6 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -33,10 +36,10 @@ public class ValidatorServiceTest {
     @Ignore
     public void validate() {
         // given
-        GaussianDistribution gaussianDistribution = GaussianUtils.getGaussianDistribution(new int[]{1000, 1200, 900});
+        GaussianDistribution gaussianDistribution = GaussianUtils.getGaussianDistribution(Stream.of(1000, 1200, 900).collect(Collectors.toList()));
 
         // when
-        when(collectorClient.isReadyToDetect()).thenReturn(true);
+        when(collectorClient.isReadyToLearn()).thenReturn(true);
         when(learningClient.getLearnedModel()).thenReturn(LearnedModelDto.builder().epsilon(0.05).mu(gaussianDistribution.getMu()).sigma2(gaussianDistribution.getSigma2()).build());
         boolean result = validatorService.validate(1100);
 
