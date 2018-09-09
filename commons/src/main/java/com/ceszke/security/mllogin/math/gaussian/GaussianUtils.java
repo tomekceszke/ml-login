@@ -4,6 +4,9 @@ import com.ceszke.security.mllogin.dto.GaussianDistribution;
 
 import java.util.List;
 
+import static com.ceszke.security.mllogin.math.MathUtils.mean;
+import static com.ceszke.security.mllogin.math.MathUtils.variance;
+
 public class GaussianUtils {
 
     public static double[] getProbability(GaussianDistribution gaussianDistribution, List<Integer> x) {
@@ -42,19 +45,4 @@ public class GaussianUtils {
         return GaussianDistribution.builder().mu(mu).sigma2(sigma2).build();
     }
 
-    private static int mean(int[] x) {
-        int sum = 0;
-        for (int item : x) {
-            sum += item;
-        }
-        return sum / x.length;
-    }
-
-    private static int variance(int[] x, int mu) {
-        int sum = 0;
-        for (int item : x) {
-            sum += Math.pow(item - mu, 2);
-        }
-        return sum / x.length;
-    }
 }

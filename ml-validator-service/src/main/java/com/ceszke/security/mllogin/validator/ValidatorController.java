@@ -1,9 +1,9 @@
 package com.ceszke.security.mllogin.validator;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @AllArgsConstructor
@@ -11,8 +11,9 @@ public class ValidatorController {
 
     private ValidatorService validatorService;
 
-    @PostMapping("/")
-    public boolean validate(@RequestBody int speed) {
+    @GetMapping("/{speed}")
+    @ResponseStatus(OK)
+    public boolean validate(@PathVariable int speed) {
         return validatorService.validate(speed);
     }
 }

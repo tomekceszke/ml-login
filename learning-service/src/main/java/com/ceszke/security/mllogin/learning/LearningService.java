@@ -9,9 +9,12 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.ceszke.security.mllogin.math.data.DataUtils.addPositiveSamples;
 
 @Service
 @AllArgsConstructor
@@ -31,10 +34,12 @@ public class LearningService {
     public void learn() {
         // prepare samples
         List<Integer> samples = collectorClient.getSamples();
-        int toIndex = samples.size() / 2;
+        Collections.shuffle(samples);
+        int size = samples.size();
+        int toIndex = size - (size / 3);
         List<Integer> trainingData = samples.subList(0, toIndex);
-        List<Integer> crossValidationData = samples.subList(toIndex, samples.size());
-        Map<Integer, Boolean> crossValidationDataMap = completeCvData(crossValidationData);
+        List<Integer> crossValidationData = samples.subList(toIndex, size);
+        Map<Integer, Boolean> crossValidationDataMap = addPositiveSamples(crossValidationData);
         // get gaussianDistribution for trainingData
         GaussianDistribution gaussianDistribution = GaussianUtils.getGaussianDistribution(trainingData);
         // get epsilon
@@ -49,22 +54,6 @@ public class LearningService {
         return ThresholdUtils.selectEpsilon(crossValidationProbabilityData);
     }
 
-    private Map<Integer, Boolean> completeCvData(List<Integer> crossValidationData) {
-        Map<Integer, Boolean> trainingData = crossValidationData.stream().collect(Collectors.toMap(p -> p, p -> false));
-        // impossible low values
-        Integer min = crossValidationData.stream().min(Integer::compareTo).get();
-        trainingData.put(0, true);
-        trainingData.put(100, true);
-        trainingData.put(500, true);
-        trainingData.put(1000, true);
-        trainingData.put(min/2, true);
-        // high values
-        Integer max = crossValidationData.stream().max(Integer::compareTo).get();
-        trainingData.put(max * 2, true);
-        trainingData.put(max + 30000, true);
-        trainingData.put(max + 60000, true);
-        return trainingData;
-    }
 
 
 }

@@ -7,11 +7,11 @@ import java.util.stream.IntStream;
 
 public class ThresholdUtils {
 
-    public static double selectEpsilon(Map<Double, Boolean> trainingData) {
+    public static double selectEpsilon(Map<Double, Boolean> data) {
         double bestEpsilon = 0;
         double bestF1 = 0;
-        Set<Double> p = trainingData.keySet();
-        List<Boolean> y = new ArrayList<>(trainingData.values());
+        Set<Double> p = data.keySet();
+        List<Boolean> y = new ArrayList<>(data.values());
         double minValidation = p.stream().min(Double::compareTo).get();
         double maxValidation = p.stream().max(Double::compareTo).get();
         double step = (maxValidation - minValidation) / 1000;

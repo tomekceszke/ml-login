@@ -2,10 +2,7 @@ package com.ceszke.security.mllogin.validator;
 
 import com.ceszke.security.mllogin.client.CollectorClient;
 import com.ceszke.security.mllogin.client.LearningClient;
-import com.ceszke.security.mllogin.dto.GaussianDistribution;
 import com.ceszke.security.mllogin.dto.LearnedModelDto;
-import com.ceszke.security.mllogin.math.gaussian.GaussianUtils;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import static com.ceszke.security.mllogin.math.MathTestsConstants.*;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -33,17 +29,43 @@ public class ValidatorServiceTest {
     private LearningClient learningClient;
 
     @Test
-    @Ignore
-    public void validate() {
+    public void shouldInvalidateIfSpeedIsToFast() {
         // given
-        GaussianDistribution gaussianDistribution = GaussianUtils.getGaussianDistribution(Stream.of(1000, 1200, 900).collect(Collectors.toList()));
-
-        // when
         when(collectorClient.isReadyToLearn()).thenReturn(true);
-        when(learningClient.getLearnedModel()).thenReturn(LearnedModelDto.builder().epsilon(0.05).mu(gaussianDistribution.getMu()).sigma2(gaussianDistribution.getSigma2()).build());
-        boolean result = validatorService.validate(1100);
+        when(learningClient.getLearnedModel()).thenReturn(LearnedModelDto.builder().epsilon(EPSILON).mu(MU).sigma2(SIGMA2).build());
+        // when/then
+        assertFalse(validatorService.validate(X_MIN / 2));
+        assertFalse(validatorService.validate(X_MIN / 3));
+        assertFalse(validatorService.validate(X_MIN / 4));
+    }
 
-        // then
-        assertTrue(result);
+    @Test
+    public void shouldInvalidateIfSpeedIsToSlow() {
+        // given
+        when(collectorClient.isReadyToLearn()).thenReturn(true);
+        when(learningClient.getLearnedModel()).thenReturn(LearnedModelDto.builder().epsilon(EPSILON).mu(MU).sigma2(SIGMA2).build());
+        // when/then
+        assertFalse(validatorService.validate(X_MAX * 2));
+        assertFalse(validatorService.validate(X_MAX * 3));
+        assertFalse(validatorService.validate(X_MAX * 4));
+    }
+
+    @Test
+    public void shouldValidateIfSpeedIsInLearnedRange() {
+        // given
+        when(collectorClient.isReadyToLearn()).thenReturn(true);
+        when(learningClient.getLearnedModel()).thenReturn(LearnedModelDto.builder().epsilon(EPSILON).mu(MU).sigma2(SIGMA2).build());
+        // when/then
+        X.forEach(i -> assertTrue(validatorService.validate(i)));
+    }
+
+    @Test
+    public void shouldValidateIfSpeedIsCloseToLearnedRange() {
+        // given
+        when(collectorClient.isReadyToLearn()).thenReturn(true);
+        when(learningClient.getLearnedModel()).thenReturn(LearnedModelDto.builder().epsilon(EPSILON).mu(MU).sigma2(SIGMA2).build());
+        // when/then
+        assertTrue(validatorService.validate(X_MIN - (X_MIN / 4)));
+        assertTrue(validatorService.validate(X_MAX + (X_MAX / 4)));
     }
 }
