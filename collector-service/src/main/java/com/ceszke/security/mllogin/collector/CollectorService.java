@@ -48,4 +48,8 @@ public class CollectorService {
         return collectorRepository.findAll().stream().map(Sample::getSpeed).collect(Collectors.toList());
     }
 
+    public int getNumberOfNeededSamples() {
+        int neededSamples = (int) (requiredSamples - collectorRepository.count());
+        return neededSamples < 0 ? 0 : neededSamples;
+    }
 }

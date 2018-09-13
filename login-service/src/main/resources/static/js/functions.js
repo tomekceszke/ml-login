@@ -8,9 +8,14 @@ function start() {
 };
 
 function end() {
-  endTime = new Date();
-  speed = endTime - startTime;
-  console.log("Time diff: "+speed);
+    if(started){
+        endTime = new Date();
+        speed = endTime - startTime;
+        console.log("Speed: "+speed);
+        started = false;
+        $('#speed').val(speed);
+        $('#debug-speed').text('Speed: '+speed+' ms');
+    }
 }
 
 $('#password').keydown(function() {
@@ -22,11 +27,11 @@ $('#password').keydown(function() {
     console.log('keypress');
 });
 
+$('#password').on('focusout', function() {
+    end();
+});
+
 $('form').on('submit', function() {
-    if(started){
-        end();
-        started = false;
-        $('#speed').val(speed);
-    }     
+   end();
 });
 

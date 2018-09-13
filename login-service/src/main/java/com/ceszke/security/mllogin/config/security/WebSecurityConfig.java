@@ -1,6 +1,7 @@
 package com.ceszke.security.mllogin.config.security;
 
 import com.ceszke.security.mllogin.client.MLValidatorClient;
+import com.ceszke.security.mllogin.security.MLSimpleUrlAuthenticationFailureHandler;
 import com.ceszke.security.mllogin.security.MLUsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -61,9 +61,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public MLUsernamePasswordAuthenticationFilter authenticationFilter() throws Exception {
         MLUsernamePasswordAuthenticationFilter authenticationFilter = new MLUsernamePasswordAuthenticationFilter(mlValidatorClient);
         authenticationFilter.setAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler());
-        authenticationFilter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error"));
+        //authenticationFilter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error"));
         authenticationFilter.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/login", "POST"));
         authenticationFilter.setAuthenticationManager(authenticationManagerBean());
+        authenticationFilter.setAuthenticationFailureHandler(new MLSimpleUrlAuthenticationFailureHandler("/login?error"));
         return authenticationFilter;
     }
 

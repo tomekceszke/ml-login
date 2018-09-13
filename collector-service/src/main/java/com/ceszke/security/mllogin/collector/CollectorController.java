@@ -31,4 +31,9 @@ public class CollectorController {
     public void collect(@RequestBody int speed) {
         collectorService.collect(speed);
     }
+
+    @GetMapping("/needed-samples")
+    public int getNumberOfNeededSamples() {
+        return collectorService.getNumberOfNeededSamples();
+    }
 }

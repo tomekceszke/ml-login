@@ -2,7 +2,7 @@
  [![Build Status](https://travis-ci.org/tomekceszke/ml-login.svg?branch=master)](https://travis-ci.org/tomekceszke/ml-login)
 #### PoC: improve login security by learning and checking additional features like typing speed
  
-![login](doc/img/login.png)
+![demo](doc/img/demo.gif)
 
 This distributed application is responsible for:
 * collecting training data: `collector-service`
@@ -35,14 +35,14 @@ tbd
     - integrate with Spring Security ✔
 - screenshots ✔  
 - `collector-service` api ✔
-- basic use case...
+- basic use case... ✔
 - implement algorithm for choosing `ε` in `learning-service` ✔
 - implement algorithm for model's evaluation in `learning-service`    
 - validation of the input (request) data (in controllers)
 - introduce exception handling ✔
 - commons - split, refactor, clean up    
 - introduce `-client` modules
-- introduce ribbon, zuul, eureka and config clients/server
+- add ribbon, zuul, eureka and config clients/server
 - extract configuration
 - extract paths
 - clean up maven poms (introduce hierarchy)    

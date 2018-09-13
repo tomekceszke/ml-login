@@ -12,29 +12,39 @@
     <link th:href="@{/css/login.css}" rel="stylesheet"/>
 </head>
 <body>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
 
-<form class="form-signin" th:action="@{/login}" method="POST">
-    <div class="text-center mb-4">
-        <h1 class="h3 mb-3 font-weight-normal"><a href="https://github.com/tomekceszke/ml-login">ml-login</a></h1>
-    </div>
+
+
+
+<!--'User is of type ' + (${@loginService.isReadyToDetect()} ? 'Administrator' : (${user.type} ?: 'Unknown'))-->
+
+<!--<div th:text="${@loginService.isReadyToDetect()}">...</div>-->
+
+
+<form class="ml-form" th:action="@{/login}" method="POST" autocomplete="off">
+    <div class="text-center mb-4"><h1 class="h3 mb-3 font-weight-normal"><a href="https://github.com/tomekceszke/ml-login">ml-login</a></h1></div>
+    <div class="alert alert-danger" role="alert" th:if="${param.error}">Login failed</div>
+    <div class="alert alert-info" role="alert" th:if="${param.logout}">You have been logged out</div>
+
     <label for="username" class="sr-only">Username</label>
     <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus />
     <label for="password" class="sr-only">Password</label>
     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required />
     <input type="hidden" id="speed" name="speed"/>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-    <p class="mt-5 mb-3 text-muted text-center">
+    <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Login</button>
+
+    <div class="text-monospace">
+        <p id="debug-speed"></p>
+        <p>Learning status:
+            <span th:utext="${@debugService.getModel()!=null} ? 'model learned (&mu;='+${@debugService.getModel().mu}+', &sigma;<sup>2</sup>='+${@debugService.getModel().sigma2}+', &epsilon;='+${#numbers.formatDecimal(@debugService.getModel().epsilon,1,8)}+')' : 'collecting samples ('+ ${@debugService.getNumberOfNeededSamples()}+ ' left)'"></span>
+        </p>
+    <p th:if="${param.reason}">Reason: <span th:text="${param.reason}"></span></p>
+    </div>
+    <p class="mt-4 mb-3 text-muted text-center">
         <a class="github-button" href="https://github.com/tomekceszke" aria-label="Follow @tomekceszke on GitHub">Follow @tomekceszke</a>
         <a class="github-button" href="https://github.com/tomekceszke/ml-login/issues" data-icon="octicon-issue-opened" aria-label="Issue tomekceszke/ml-login on GitHub">Issue</a>
     </p>
 </form>
-
 
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

@@ -19,15 +19,11 @@ public class MLUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         Authentication authentication = super.attemptAuthentication(request, response);
-
         int speed = Integer.parseInt(request.getParameter("speed"));
-
-        boolean valid = mlValidatorClient.validate(speed);
-
-        if (!valid) {
+        if (!mlValidatorClient.validate(speed)) {
+            response.addHeader("X-Error", "speed");
             throw new MLAuthenticationException("Invalid ML factor: speed");
         }
-
         return authentication;
     }
 }
