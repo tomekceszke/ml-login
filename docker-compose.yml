@@ -1,13 +1,14 @@
 version: '3'
 services:
   collector-service:
-    image: registry.ceszke.com:5000/collector-service:latest
+    image: ${REGISTRY_URL}/collector-service:latest
     ports:
-    - "8082:8082"
+    - "${COLLECTOR_SERVICE_PORT}:${COLLECTOR_SERVICE_PORT}"
     environment:
     - "SPRING_PROFILES_ACTIVE=prod"
     healthcheck:
-      test: curl --fail -s http://localhost:8082/health/ || exit 1
+      test: curl --fail -s http://localhost:${COLLECTOR_SERVICE_PORT}/health/ || exit 1
       interval: 10s
       timeout: 10s
       retries: 3
+      start_period: 20s

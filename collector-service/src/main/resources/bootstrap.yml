@@ -41,3 +41,20 @@ spring:
         web-allow-others: false
 
 ml.required.samples: 5
+
+---
+
+spring:
+  profiles: prod
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        use_sql_comments: false
+        format_sql: false
+    ###
+    #   H2 Settings
+    ###
+    h2:
+      console:
+        enabled: false
