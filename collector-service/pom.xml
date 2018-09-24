@@ -90,6 +90,7 @@
                 <configuration>
                     <repository>registry.ceszke.com:5000/${project.artifactId}</repository>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+                    <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
                     <!--<tag>${project.version}</tag>-->
                     <tag>latest</tag>
                     <buildArgs>
