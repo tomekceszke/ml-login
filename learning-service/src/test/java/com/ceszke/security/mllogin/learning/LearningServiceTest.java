@@ -8,9 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.ceszke.security.mllogin.math.MathTestsConstants.*;
+import static com.ceszke.security.mllogin.math.MathTestsConstants.X;
 import static com.ceszke.security.mllogin.math.MathUtils.mean;
 import static com.ceszke.security.mllogin.math.MathUtils.variance;
 import static org.junit.Assert.*;
@@ -18,16 +19,18 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@DirtiesContext
+
 public class LearningServiceTest {
 
     @Autowired
-    LearningService learningService;
+    private LearningService learningService;
 
     @Autowired
-    LearningRepository learningRepository;
+    private LearningRepository learningRepository;
 
     @MockBean
-    CollectorClient collectorClient;
+    private CollectorClient collectorClient;
 
     @Test
     public void shouldReturnLearnedModel() {
@@ -54,15 +57,11 @@ public class LearningServiceTest {
     }
 
     @Test
-    public void shouldReturnNullIfNoLearnedModel() {
+    public void shouldReturnNullIfNoLearnedModel2ndCheck() {
         // when
         LearnedModelDto learnedModel = learningService.getLearnedModel();
         // then
         assertNull(learnedModel);
-    }
-
-    private LearnedModel buildLearnedModel() {
-        return LearnedModel.builder().mu(1).sigma2(2).epsilon(3).build();
     }
 
     @Test
@@ -76,9 +75,20 @@ public class LearningServiceTest {
         assertNotNull(learnedModel);
         int[] x = X.stream().mapToInt(i -> i).toArray();
         int mean = mean(x);
-        assertEquals(mean, learnedModel.getMu(),500);
+        assertEquals(mean, learnedModel.getMu(), 500);
         assertEquals(variance(x, mean), learnedModel.getSigma2(), 50000);
     }
 
 
+    @Test
+    public void shouldReturnNullIfNoLearnedModel() {
+        // when
+        LearnedModelDto learnedModel = learningService.getLearnedModel();
+        // then
+        assertNull(learnedModel);
+    }
+
+    private LearnedModel buildLearnedModel() {
+        return LearnedModel.builder().mu(1).sigma2(2).epsilon(3).build();
+    }
 }
