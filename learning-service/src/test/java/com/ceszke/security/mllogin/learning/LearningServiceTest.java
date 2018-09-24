@@ -2,13 +2,13 @@ package com.ceszke.security.mllogin.learning;
 
 import com.ceszke.security.mllogin.client.CollectorClient;
 import com.ceszke.security.mllogin.dto.LearnedModelDto;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.ceszke.security.mllogin.math.MathTestsConstants.X;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@DirtiesContext
+//@DirtiesContext
 
 public class LearningServiceTest {
 
@@ -31,6 +31,11 @@ public class LearningServiceTest {
 
     @MockBean
     private CollectorClient collectorClient;
+
+    @After
+    public void tearDown() throws Exception {
+        learningRepository.deleteAll();
+    }
 
     @Test
     public void shouldReturnLearnedModel() {
