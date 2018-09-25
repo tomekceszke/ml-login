@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MLValidatorApplicationTest {
+public class ValidatorApplicationTest {
 
     @Test
     public void applicationContextLoaded() {
@@ -15,6 +15,6 @@ public class MLValidatorApplicationTest {
 
     @Test
     public void applicationContextTest() {
-        MLValidatorApplication.main(new String[]{});
+        ValidatorApplication.main(new String[]{});
     }
 }

@@ -6,9 +6,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients(basePackages = {"com.ceszke.security.mllogin.client"})
-public class MLValidatorApplication {
+public class ValidatorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MLValidatorApplication.class, args);
+		SpringApplication.run(ValidatorApplication.class, args);
 	}
 }

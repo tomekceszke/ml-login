@@ -37,7 +37,7 @@
         <module>collector-service</module>
         <module>learning-service</module>
         <module>login-service</module>
-        <module>ml-validator-service</module>
+        <module>validator-service</module>
     </modules>
 
     <dependencies>

@@ -25,3 +25,33 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+
+
+---
+
+spring:
+  profiles: prod
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        use_sql_comments: false
+        format_sql: false
+    ###
+    #   H2 Settings
+    ###
+    h2:
+      console:
+        enabled: false
+
+learning-service:
+  ribbon:
+    listOfServers: 172.17.0.1:8083
+
+collector-service:
+  ribbon:
+    listOfServers: 172.17.0.1:8082
+
+validator-service:
+  ribbon:
+    listOfServers: 172.17.0.1:8081

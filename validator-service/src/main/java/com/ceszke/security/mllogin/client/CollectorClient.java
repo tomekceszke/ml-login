@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "collector-service", url = "http://127.0.0.1:8082")
+@FeignClient(name = "collector-service", url = "${collector-service.ribbon.listOfServers:localhost}")
 public interface CollectorClient {
 
     @GetMapping("/ready")

@@ -1,8 +1,0 @@
-server:
-  port: 8081
-spring:
-  application:
-    name: ml-validator-service
-  output:
-    ansi:
-      enabled: ALWAYS

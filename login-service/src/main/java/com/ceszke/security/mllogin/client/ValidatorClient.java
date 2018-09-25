@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(name = "ml-validator-service", url = "http://127.0.0.1:8081")
-public interface MLValidatorClient {
+@FeignClient(name = "validator-service", url = "${validator-service.ribbon.listOfServers:localhost}")
+public interface ValidatorClient {
 
     @GetMapping("/{speed}")
     boolean validate(@PathVariable("speed") int speed);

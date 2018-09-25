@@ -7,7 +7,7 @@
 This distributed application is responsible for:
 * collecting training data: `collector-service`
 * [anomaly detection using the multivariate gaussian distribution](https://www.coursera.org/lecture/machine-learning/anomaly-detection-using-the-multivariate-gaussian-distribution-DnNr9) (bases only on basic mathematical operations): `learning-service`
-* validating password basing on features like typing speed: `ml-validator-service`
+* validating password basing on features like typing speed: `validator-service`
 * authenticating user: `login-service`
   
 

@@ -58,3 +58,15 @@ spring:
     h2:
       console:
         enabled: false
+
+learning-service:
+  ribbon:
+    listOfServers: 172.17.0.1:8083
+
+collector-service:
+  ribbon:
+    listOfServers: 172.17.0.1:8082
+
+validator-service:
+  ribbon:
+    listOfServers: 172.17.0.1:8081

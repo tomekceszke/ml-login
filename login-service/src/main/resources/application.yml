@@ -1,3 +1,30 @@
 logging.level:
   org.springframework.security: DEBUG
   org.springframework.web: DEBUG
+
+ribbon:
+  #  ReadTimeout: 60000
+  #  connection-timeout: 3000
+  eureka:
+    enabled: false
+
+---
+
+spring:
+  profiles: prod
+
+logging.level:
+  org.springframework.security: ERROR
+  org.springframework.web: ERROR
+
+learning-service:
+  ribbon:
+    listOfServers: 172.17.0.1:8083
+
+collector-service:
+  ribbon:
+    listOfServers: 172.17.0.1:8082
+
+validator-service:
+  ribbon:
+    listOfServers: 172.17.0.1:8081
