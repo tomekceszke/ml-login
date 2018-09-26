@@ -12,9 +12,4 @@ public class ValidatorApplicationTest {
     @Test
     public void applicationContextLoaded() {
     }
-
-    @Test
-    public void applicationContextTest() {
-        ValidatorApplication.main(new String[]{});
-    }
 }

@@ -13,9 +13,4 @@ public class CollectorApplicationTests {
     public void contextLoads() {
     }
 
-    @Test
-    public void applicationContextTest() {
-        CollectorApplication.main(new String[]{});
-    }
-
 }

@@ -13,9 +13,4 @@ public class LearningApplicationTest {
     public void applicationContextLoaded() {
     }
 
-    @Test
-    public void applicationContextTest() {
-        LearningApplication.main(new String[]{});
-    }
-
 }
