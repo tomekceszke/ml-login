@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+      server:
+        git:
+          uri: https://github.com/tomekceszke/ml-login-config
+  output:
+    ansi:
+      enabled: ALWAYS
+eureka:
+  client:
+    enabled: false

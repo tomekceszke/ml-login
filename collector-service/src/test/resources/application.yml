@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+  output:
+    ansi:
+      enabled: ALWAYS
+eureka:
+  client:
+    enabled: false
+
+ml.required.samples: 5
