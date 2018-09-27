@@ -3,9 +3,10 @@ server:
 spring:
   application:
     name: login-service
+  cloud:
+    config:
+      uri: http://${DOCKER_HOST_IP:localhost}:8888
+      fail-fast: true
   output:
     ansi:
       enabled: ALWAYS
-#ribbon:
-#  ReadTimeout: 60000
-#  connection-timeout: 3000

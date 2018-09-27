@@ -1,57 +1,10 @@
-server:
-  port: 8083
 spring:
   application:
     name: learning-service
+  cloud:
+    config:
+      uri: http://${DOCKER_HOST_IP:localhost}:8888
+      fail-fast: true
   output:
     ansi:
       enabled: ALWAYS
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        show_sql: true
-        use_sql_comments: true
-        format_sql: true
-  ###
-  #   H2 Settings
-  ###
-  h2:
-    console:
-      enabled: true
-      path: /console
-      settings:
-        trace: false
-        web-allow-others: false
-
-
----
-
-spring:
-  profiles: prod
-  jpa:
-    properties:
-      hibernate:
-        show_sql: false
-        use_sql_comments: false
-        format_sql: false
-    ###
-    #   H2 Settings
-    ###
-    h2:
-      console:
-        enabled: false
-
-learning-service:
-  ribbon:
-    listOfServers: 172.17.0.1:8083
-
-collector-service:
-  ribbon:
-    listOfServers: 172.17.0.1:8082
-
-validator-service:
-  ribbon:
-    listOfServers: 172.17.0.1:8081

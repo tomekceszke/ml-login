@@ -1,25 +1,10 @@
-server:
-  port: 8081
 spring:
   application:
     name: validator-service
+  cloud:
+    config:
+      uri: http://${DOCKER_HOST_IP:localhost}:8888
+      fail-fast: true
   output:
     ansi:
       enabled: ALWAYS
-
----
-
-spring:
-  profiles: prod
-
-learning-service:
-  ribbon:
-    listOfServers: 172.17.0.1:8083
-
-collector-service:
-  ribbon:
-    listOfServers: 172.17.0.1:8082
-
-validator-service:
-  ribbon:
-    listOfServers: 172.17.0.1:8081

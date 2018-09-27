@@ -36,15 +36,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-contract-wiremock</artifactId>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
@@ -55,17 +46,12 @@
             <artifactId>commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.github.tomakehurst</groupId>-->
-            <!--<artifactId>wiremock</artifactId>-->
-            <!--<version>2.18.0</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
     </dependencies>
     
     <build>
@@ -92,7 +78,6 @@
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
                     <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
                     <!--<tag>${project.version}</tag>-->
-                    <tag>latest</tag>
                     <buildArgs>
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>

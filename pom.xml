@@ -38,6 +38,7 @@
         <module>learning-service</module>
         <module>login-service</module>
         <module>validator-service</module>
+        <module>config</module>
     </modules>
 
     <dependencies>
