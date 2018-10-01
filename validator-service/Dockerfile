@@ -1,4 +1,7 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-alpine
+RUN apk add --update \
+    curl \
+    && rm -rf /var/cache/apk/*
 MAINTAINER Tomasz Ceszke
 VOLUME /tmp
 ENTRYPOINT exec java $JAVA_OPTS -jar /usr/share/ml-login/validator-service.jar
