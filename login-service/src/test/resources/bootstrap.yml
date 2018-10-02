@@ -1,10 +1,7 @@
-spring:
+bootstrap.ymlspring:
   cloud:
     config:
       enabled: false
-  output:
-    ansi:
-      enabled: ALWAYS
 eureka:
   client:
     enabled: false
