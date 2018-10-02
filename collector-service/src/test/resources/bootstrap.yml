@@ -5,3 +5,5 @@ spring:
 eureka:
   client:
     enabled: false
+
+ml.required.samples: 5
