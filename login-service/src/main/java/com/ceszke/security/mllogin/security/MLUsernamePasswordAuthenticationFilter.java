@@ -23,7 +23,7 @@ public class MLUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
         int speed = Integer.parseInt(request.getParameter("speed"));
         if (!validatorClient.validate(speed, request.getSession().getId())) {
             response.addHeader("X-Error", "speed");
-            throw new MLAuthenticationException("Invalid ML factor: typing speed");
+            throw new MLAuthenticationException("typing speed");
         } else {
             request.getSession().setAttribute("speed", speed);
         }

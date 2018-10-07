@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class CollectorTestUtils {
 
-    public static final String TEST_SESSION_ID = "1";
+    static final String TEST_SESSION_ID = "1";
 
     static List<Sample> buildRandomSamples(int numberOfSamples) {
         return IntStream.range(0, numberOfSamples).mapToObj(i -> buildRandomSample()).collect(Collectors.toList());

@@ -25,10 +25,11 @@ public class LearningControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    private static final String TEST_SESSION_ID = "1";
 
     @Test
     public void shouldReturnNullLearnedModelInitially() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/model"))
+        mvc.perform(MockMvcRequestBuilders.get("/model/{sessionId}", TEST_SESSION_ID))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(""));

@@ -33,10 +33,12 @@ public class ValidatorControllerTest {
     @MockBean
     private ValidatorService validatorService;
 
+    private static final String TEST_SESSION_ID = "1";
+
     @Test
     public void shouldValidate() throws Exception {
         when(validatorService.validate(anyInt(), anyString())).thenReturn(true);
-        mvc.perform(MockMvcRequestBuilders.get("/{speed}", X.get(0)))
+        mvc.perform(MockMvcRequestBuilders.get("/{speed}/{sessionId}", X.get(0), TEST_SESSION_ID))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));

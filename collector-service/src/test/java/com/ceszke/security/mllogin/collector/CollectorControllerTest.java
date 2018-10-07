@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.mock.web.MockHttpSession;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -37,13 +35,13 @@ public class CollectorControllerTest {
 
     @Test
     public void collect() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.post("/").session(new MockHttpSession())
+        mvc.perform(MockMvcRequestBuilders.post("/{sessionId}",TEST_SESSION_ID)
                 .contentType(APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(100)))
                 .andDo(print())
                 .andExpect(status().isCreated());
 
-        mvc.perform(MockMvcRequestBuilders.post("/")
+        mvc.perform(MockMvcRequestBuilders.post("/{sessionId}",TEST_SESSION_ID)
                 .contentType(APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(-100)))
                 .andDo(print())
@@ -53,8 +51,7 @@ public class CollectorControllerTest {
     @Test
     public void isReadyToDetect() throws Exception {
         addRandomSamples(requiredSamples);
-        mvc.perform(MockMvcRequestBuilders.get("/ready")
-                .session(new MockHttpSession(new MockServletContext(),TEST_SESSION_ID)))
+        mvc.perform(MockMvcRequestBuilders.get("/ready/{sessionId}",TEST_SESSION_ID))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
@@ -63,8 +60,7 @@ public class CollectorControllerTest {
     @Test
     public void getSamples() throws Exception {
         addRandomSamples(requiredSamples);
-        mvc.perform(MockMvcRequestBuilders.get("/")
-                .session(new MockHttpSession(new MockServletContext(),TEST_SESSION_ID)))
+        mvc.perform(MockMvcRequestBuilders.get("/{sessionId}",TEST_SESSION_ID))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(requiredSamples)));
     }
@@ -78,8 +74,7 @@ public class CollectorControllerTest {
     private void addRandomSample() throws Exception {
         Random random = new Random();
         int randomSpeed = random.nextInt(1000) + 2000;
-        mvc.perform(MockMvcRequestBuilders.post("/")
-                .session(new MockHttpSession(new MockServletContext(),TEST_SESSION_ID))
+        mvc.perform(MockMvcRequestBuilders.post("/{sessionId}",TEST_SESSION_ID)
                 .contentType(APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(randomSpeed)))
                 .andExpect(status().isCreated());

@@ -15,10 +15,9 @@
 
 <form class="ml-form" th:action="@{/login}" method="POST" autocomplete="off">
     <div class="text-center mb-4"><h1 class="h3 mb-3 font-weight-normal"><a href="https://github.com/tomekceszke/ml-login">ml-login</a></h1></div>
-    <div class="alert alert-danger" role="alert" th:if="${param.error}">Login failed</div>
-    <div class="alert alert-warning" role="alert"  th:if="${param.error}">
+    <div class="alert alert-danger" role="alert" th:if="${param.error}">Login failed:
         <span th:if="${param.reason}">[[${param.reason}]]</span>
-        <span th:unless="${param.reason}">Wrong credentials</span>
+        <span th:unless="${param.reason}">wrong credentials</span>
     </div>
     <div class="alert alert-info" role="alert" th:if="${param.logout}">You have been logged out</div>
 
