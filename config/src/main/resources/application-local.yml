@@ -3,5 +3,5 @@ spring:
     config:
       server:
         git:
-          uri: file://C:/Users/tomek/Projects/ml-login-config
-
+          uri: file:/c:/Users/tomek/Projects/ml-login-config
+#          force-pull: true

@@ -2,16 +2,19 @@ package com.ceszke.security.mllogin.client;
 
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @FeignClient(name = "collector-service", url = "${collector-service.ribbon.listOfServers:localhost}")
 public interface CollectorClient {
 
-    @GetMapping("/ready")
-    boolean isReadyToLearn();
+    @GetMapping("/{sessionId}")
+    List<Integer> getSamples(@PathVariable("sessionId") String sessionId);
 
-    @PostMapping("/")
-    void collect(@RequestBody int speed);
+    @GetMapping("/ready/{sessionId}")
+    boolean isReadyToLearn(@PathVariable("sessionId") String sessionId);
+
+    @PostMapping("/{sessionId}")
+    void collect(@RequestBody int speed, @PathVariable("sessionId") String sessionId);
 }

@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static com.ceszke.security.mllogin.collector.CollectorTestUtils.buildRandomSamples;
+import static com.ceszke.security.mllogin.collector.CollectorTestUtils.TEST_SESSION_ID;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -30,7 +31,7 @@ public class CollectorRepositoryTest {
         buildRandomSamples(numberOfSamples).forEach(entityManager::persist);
         entityManager.flush();
         // when
-        List<Sample> typingTimes = collectorRepository.findAll();
+        List<Sample> typingTimes = collectorRepository.findAllBySessionId(TEST_SESSION_ID);
         // then
         assertEquals(numberOfSamples, typingTimes.size());
     }

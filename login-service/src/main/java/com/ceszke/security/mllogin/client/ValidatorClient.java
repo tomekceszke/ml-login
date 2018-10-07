@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "validator-service", url = "${validator-service.ribbon.listOfServers:localhost}")
 public interface ValidatorClient {
 
-    @GetMapping("/{speed}")
-    boolean validate(@PathVariable("speed") int speed);
+    @GetMapping("/{speed}/{sessionId}")
+    boolean validate(@PathVariable("speed") int speed, @PathVariable("sessionId") String sessionId);
 }

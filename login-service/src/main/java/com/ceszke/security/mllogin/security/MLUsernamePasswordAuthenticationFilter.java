@@ -10,6 +10,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @Slf4j
 @AllArgsConstructor
 public class MLUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -20,9 +21,11 @@ public class MLUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         Authentication authentication = super.attemptAuthentication(request, response);
         int speed = Integer.parseInt(request.getParameter("speed"));
-        if (!validatorClient.validate(speed)) {
+        if (!validatorClient.validate(speed, request.getSession().getId())) {
             response.addHeader("X-Error", "speed");
-            throw new MLAuthenticationException("Invalid ML factor: speed");
+            throw new MLAuthenticationException("Invalid ML factor: typing speed");
+        } else {
+            request.getSession().setAttribute("speed", speed);
         }
         return authentication;
     }

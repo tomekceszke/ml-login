@@ -11,9 +11,9 @@ public class ValidatorController {
 
     private ValidatorService validatorService;
 
-    @GetMapping("/{speed}")
+    @GetMapping("/{speed}/{sessionId}")
     @ResponseStatus(OK)
-    public boolean validate(@PathVariable int speed) {
-        return validatorService.validate(speed);
+    public boolean validate(@PathVariable int speed, @PathVariable String sessionId) {
+        return validatorService.validate(speed, sessionId);
     }
 }

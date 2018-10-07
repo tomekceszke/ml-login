@@ -2,10 +2,9 @@ package com.ceszke.security.mllogin.learning;
 
 import com.ceszke.security.mllogin.dto.LearnedModelDto;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -16,15 +15,15 @@ public class LearningController {
 
     private LearningService learningService;
 
-    @GetMapping("/model")
+    @GetMapping("/model/{sessionId}")
     @ResponseStatus(OK)
-    public LearnedModelDto getLearnedModel() {
-        return learningService.getLearnedModel();
+    public LearnedModelDto getLearnedModel(@PathVariable String sessionId) {
+        return learningService.getLearnedModel(sessionId);
     }
 
-    @PostMapping("/learn")
+    @PostMapping("/learn/{sessionId}")
     @ResponseStatus(CREATED)
-    public void learn() {
-        learningService.learn();
+    public void learn(@RequestBody List<Integer> samples, @PathVariable String sessionId) {
+        learningService.learn(samples, sessionId);
     }
 }

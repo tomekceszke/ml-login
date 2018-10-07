@@ -14,7 +14,7 @@ function end() {
         console.log("Speed: "+speed);
         started = false;
         $('#speed').val(speed);
-        $('#debug-speed').text('Speed: '+speed+' ms');
+        $('#debug-speed').text(speed+' ms');
     }
 }
 

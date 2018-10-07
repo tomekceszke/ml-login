@@ -1,6 +1,5 @@
 package com.ceszke.security.mllogin.collector;
 
-import com.ceszke.security.mllogin.client.LearningClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,40 +15,27 @@ public class CollectorService {
 
     private final CollectorRepository collectorRepository;
 
-    @SuppressWarnings("unused")
-    private LearningClient learningClient;
-
     @Value("${ml.required.samples}")
     private int requiredSamples;
 
-    public boolean isReadyToDetect() {
-        return collectorRepository.count() >= requiredSamples;
+    public boolean isReadyToDetect(String sessionId) {
+        return collectorRepository.countBySessionId(sessionId) >= requiredSamples;
     }
 
-    public void collect(int speed) {
+    public void collect(int speed, String sessionId) {
         if (speed > 0) {
-//            if (isReadyToDetect()) {
-//                log.warn("Already have all required samples");
-//                if (learningClient.getLearnedModel() == null) {
-//                    log.info("Learning...");
-//                    learningClient.learn();
-//                } else {
-//                    log.info("Already learned");
-//                }
-//            } else {
-            collectorRepository.save(Sample.builder().speed(speed).build());
-//            }
+            collectorRepository.save(Sample.builder().sessionId(sessionId).speed(speed).build());
         } else {
             throw new IllegalArgumentException("Speed cannot be negative or zero");
         }
     }
 
-    public List<Integer> getSamples() {
-        return collectorRepository.findAll().stream().map(Sample::getSpeed).collect(Collectors.toList());
+    public List<Integer> getSamples(String sessionId) {
+        return collectorRepository.findAllBySessionId(sessionId).stream().map(Sample::getSpeed).collect(Collectors.toList());
     }
 
-    public int getNumberOfNeededSamples() {
-        int neededSamples = (int) (requiredSamples - collectorRepository.count());
+    public int getNumberOfNeededSamples(String sessionId) {
+        int neededSamples = (int) (requiredSamples - collectorRepository.countBySessionId(sessionId));
         return neededSamples < 0 ? 0 : neededSamples;
     }
 }

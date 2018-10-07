@@ -41,6 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(authenticationFilter())
                 .exceptionHandling()
                 .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
+                .and().logout().invalidateHttpSession(false)
         //.authenticationDetailsSource(new CustomWebAuthenticationDetailsSource())
         ;
     }

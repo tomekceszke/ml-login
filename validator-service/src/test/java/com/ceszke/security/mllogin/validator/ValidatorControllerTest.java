@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.ceszke.security.mllogin.math.MathTestsConstants.X;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -34,7 +35,7 @@ public class ValidatorControllerTest {
 
     @Test
     public void shouldValidate() throws Exception {
-        when(validatorService.validate(anyInt())).thenReturn(true);
+        when(validatorService.validate(anyInt(), anyString())).thenReturn(true);
         mvc.perform(MockMvcRequestBuilders.get("/{speed}", X.get(0)))
                 .andDo(print())
                 .andExpect(status().isOk())

@@ -1,6 +1,5 @@
 package com.ceszke.security.mllogin.learning;
 
-import com.ceszke.security.mllogin.client.CollectorClient;
 import com.ceszke.security.mllogin.dto.GaussianDistribution;
 import com.ceszke.security.mllogin.dto.LearnedModelDto;
 import com.ceszke.security.mllogin.math.gaussian.GaussianUtils;
@@ -20,20 +19,17 @@ import static com.ceszke.security.mllogin.math.data.DataUtils.addPositiveSamples
 @AllArgsConstructor
 public class LearningService {
 
-    private CollectorClient collectorClient;
-
     private LearningRepository learningRepository;
 
-    public LearnedModelDto getLearnedModel() {
-        return learningRepository.findAll().stream()
+    public LearnedModelDto getLearnedModel(String sessionId) {
+        return learningRepository.findAllBySessionId(sessionId).stream()
                 .reduce((first, second) -> second)
                 .map(learnedModel -> new ModelMapper().map(learnedModel, LearnedModelDto.class))
                 .orElse(null);
     }
 
-    public void learn() {
+    public void learn(List<Integer> samples , String sessionId) {
         // prepare samples
-        List<Integer> samples = collectorClient.getSamples();
         Collections.shuffle(samples);
         int size = samples.size();
         int toIndex = size - (size / 3);
@@ -45,7 +41,7 @@ public class LearningService {
         // get epsilon
         double epsilon = selectEpsilon(crossValidationDataMap, gaussianDistribution);
         // save model
-        learningRepository.save(LearnedModel.builder().mu(gaussianDistribution.getMu()).sigma2(gaussianDistribution.getSigma2()).epsilon(epsilon).build());
+        learningRepository.save(LearnedModel.builder().sessionId(sessionId).mu(gaussianDistribution.getMu()).sigma2(gaussianDistribution.getSigma2()).epsilon(epsilon).build());
     }
 
     private double selectEpsilon(Map<Integer, Boolean> crossValidationDataMap, GaussianDistribution gaussianDistribution) {
@@ -53,7 +49,5 @@ public class LearningService {
                 .collect(Collectors.toMap(entry -> GaussianUtils.getProbability(gaussianDistribution, entry.getKey()), Map.Entry::getValue, (p1, p2) -> p1));
         return ThresholdUtils.selectEpsilon(crossValidationProbabilityData);
     }
-
-
 
 }

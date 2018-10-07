@@ -18,15 +18,15 @@ public class ValidatorService {
     private LearningClient learningClient;
 
 
-    public boolean validate(int speed) {
-        LearnedModelDto learnedModelDto = learningClient.getLearnedModel();
+    public boolean validate(int speed, String sessionId) {
+        LearnedModelDto learnedModelDto = learningClient.getLearnedModel(sessionId);
         if (learnedModelDto == null) {
-            if (collectorClient.isReadyToLearn()) {
-                learningClient.learn();
-                learnedModelDto = learningClient.getLearnedModel();
+            if (collectorClient.isReadyToLearn(sessionId)) {
+                learningClient.learn(collectorClient.getSamples(sessionId),sessionId);
+                learnedModelDto = learningClient.getLearnedModel(sessionId);
             } else {
                 log.warn("Not ready to predict");
-                collectorClient.collect(speed);
+                collectorClient.collect(speed, sessionId);
                 return true;
             }
         }

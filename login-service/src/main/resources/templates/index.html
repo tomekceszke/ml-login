@@ -13,10 +13,17 @@
 </head>
 <body>
 <form class="ml-form" th:action="@{/logout}" method="POST" autocomplete="off">
-    <div class="text-center mb-4"><h1 class="h3 mb-3 font-weight-normal" th:inline="text">Hi [[${#httpServletRequest.remoteUser}]]!</h1></div>
+    <div class="alert alert-success" role="alert"><h3>You're logged in!</h3></div>
+    
     <div class="alert alert-danger" role="alert" th:if="${param.error}">Invalid credentials</div>
     <div class="alert alert-info" role="alert" th:if="${param.logout}">You have been logged out</div>
     <button class="btn btn-lg btn-outline-primary btn-block" type="submit" autofocus>Logout</button>
+    <div class="alert alert-secondary small text-monospace" role="alert">
+        Current typing speed: [[${session.speed}]] ms
+    </div>
+    <div class="alert alert-secondary small text-monospace" role="alert">
+        <span th:utext="${@debugService.getModel()!=null} ? 'Learned typing speed (&mu;): '+${@debugService.getModel().mu}+' ms <br/> Variance (&sigma;<sup>2</sup>): '+${@debugService.getModel().sigma2}+'<br/> Threshold level (&epsilon;): '+${#numbers.formatDecimal(@debugService.getModel().epsilon,1,8)} : 'Still needs '+ ${@debugService.getNumberOfNeededSamples()+1}+ ' samples'"></span>
+    </div>
     <p class="mt-4 mb-3 text-muted text-center">
         <a class="github-button" href="https://github.com/tomekceszke" aria-label="Follow @tomekceszke on GitHub">Follow @tomekceszke</a>
         <a class="github-button" href="https://github.com/tomekceszke/ml-login/issues" data-icon="octicon-issue-opened" aria-label="Issue tomekceszke/ml-login on GitHub">Issue</a>
