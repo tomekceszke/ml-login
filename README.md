@@ -3,7 +3,7 @@
 ### Proof of Concept: 
 improve login security by learning and checking additional features like typing speed
  
-![demo](doc/img/demo.gif)
+![demo](doc/img/demo1.gif)
 
 This distributed application is responsible for:
 * collecting training data: `collector-service`
@@ -45,7 +45,8 @@ http://ml-login.ceszke.com
 - introduce exception handling ✔
 - commons - split, refactor, clean up    
 - introduce `-client` modules
-- add hystrix, zuul, eureka and config clients/server
+- add hystrix, zuul, eureka
+- add config clients/server ✔
 - extract configuration ✔
 - extract paths
 - clean up maven poms (introduce hierarchy)    
@@ -53,6 +54,6 @@ http://ml-login.ceszke.com
 - introduce wiremock and integrational tests (multi services)
 - write more tests ✔
 - replace Thymeleaf by any modern frontend framework (angular/react/vue?)
-- prepare live demo    
+- prepare live demo ✔    
     
     
