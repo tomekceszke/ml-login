@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class LearningService {
                 .orElse(null);
     }
 
+    @Transactional
     public void learn(List<Integer> samples , String sessionId) {
         // prepare samples
         Collections.shuffle(samples);
@@ -50,4 +52,8 @@ public class LearningService {
         return ThresholdUtils.selectEpsilon(crossValidationProbabilityData);
     }
 
+    @Transactional
+    public void deleteLearnedModel(String sessionId) {
+        learningRepository.deleteBySessionId(sessionId);
+    }
 }

@@ -14,27 +14,25 @@
 <body>
 
 <form class="ml-form" th:action="@{/login}" method="POST" autocomplete="off">
-    <div class="text-center mb-4"><h1 class="h3 mb-3 font-weight-normal"><a href="https://github.com/tomekceszke/ml-login">ml-login</a></h1></div>
+    <div class="text-center mb-4"><h1 class="h3 mb-3 font-weight-normal"><a href="https://github.com/tomekceszke/ml-login">ml-login</a></h1><hr></div>
     <div class="alert alert-danger" role="alert" th:if="${param.error}">Login failed:
         <span th:if="${param.reason}">[[${param.reason}]]</span>
-        <span th:unless="${param.reason}">wrong credentials</span>
     </div>
-    <div class="alert alert-info" role="alert" th:if="${param.logout}">You have been logged out</div>
-
+    <!--<div class="alert alert-secondary" role="alert" th:if="${param.logout}">You have been logged out</div>-->
+    <img th:src="@{/img/locked.png}" class="mx-auto d-block">
     <label for="username" class="sr-only">Username</label>
     <input type="text" id="username" name="username" class="form-control" placeholder="type: user" required autofocus />
     <label for="password" class="sr-only">Password</label>
     <input type="password" id="password" name="password" class="form-control" placeholder="type: password" required />
     <input type="hidden" id="speed" name="speed"/>
     <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Login</button>
-
+    
     <div class="alert alert-secondary small text-monospace" role="alert">
-        Current typing speed: <span id="debug-speed"></span>
-    </div>
-    <div class="alert alert-secondary small text-monospace" role="alert">
+        Current typing speed: <span id="debug-speed"></span><br/>
         Status:
         <span th:utext="${@debugService.getModel()!=null} ? 'model learned <br/>&mu;='+${@debugService.getModel().mu}+' &sigma;<sup>2</sup>='+${@debugService.getModel().sigma2}+' &epsilon;='+${#numbers.formatDecimal(@debugService.getModel().epsilon,1,8)} : 'collecting samples ('+ ${@debugService.getNumberOfNeededSamples()+1}+ ' left)'"></span>
     </div>
+    <hr>
     <p class="mt-4 mb-3 text-muted text-center">
         <a class="github-button" href="https://github.com/tomekceszke" aria-label="Follow @tomekceszke on GitHub">Follow @tomekceszke</a>
         <a class="github-button" href="https://github.com/tomekceszke/ml-login/issues" data-icon="octicon-issue-opened" aria-label="Issue tomekceszke/ml-login on GitHub">Issue</a>

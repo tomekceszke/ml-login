@@ -35,7 +35,13 @@ body {
 }
 
 .ml-form button {
+ margin-top: 1rem;
  margin-bottom: 1rem;
+}
+
+.ml-form img {
+ margin-top: 3rem;
+ margin-bottom: 3rem;
 }
 
 /*.ml-form input[type="text"] {

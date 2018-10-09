@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
@@ -19,6 +20,12 @@ public class LearningController {
     @ResponseStatus(OK)
     public LearnedModelDto getLearnedModel(@PathVariable String sessionId) {
         return learningService.getLearnedModel(sessionId);
+    }
+
+    @DeleteMapping("/model/{sessionId}")
+    @ResponseStatus(NO_CONTENT)
+    public void deleteLearnedModel(@PathVariable String sessionId) {
+        learningService.deleteLearnedModel(sessionId);
     }
 
     @PostMapping("/learn/{sessionId}")

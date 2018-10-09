@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @AllArgsConstructor
@@ -36,5 +35,11 @@ public class CollectorController {
     @ResponseStatus(OK)
     public int getNumberOfNeededSamples(@PathVariable String sessionId) {
         return collectorService.getNumberOfNeededSamples(sessionId);
+    }
+
+    @DeleteMapping("/{sessionId}")
+    @ResponseStatus(NO_CONTENT)
+    public void deleteAll(@PathVariable String sessionId) {
+        collectorService.deleteAll(sessionId);
     }
 }

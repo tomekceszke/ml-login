@@ -86,6 +86,19 @@ public class LearningServiceTest {
         assertNull(learnedModel);
     }
 
+    @Test
+    public void shouldReturnNullIfModelsDeleted() {
+        // when
+        assertEquals(0, learningRepository.count());
+        learningRepository.save(buildLearnedModel());
+        learningRepository.save(buildLearnedModel());
+        assertEquals(2, learningRepository.count());
+        // when
+        learningService.deleteLearnedModel(TEST_SESSION_ID);
+        // then
+        assertEquals(0, learningRepository.count());
+    }
+
     private LearnedModel buildLearnedModel() {
         return LearnedModel.builder().sessionId(TEST_SESSION_ID).mu(1).sigma2(2).epsilon(3).build();
     }

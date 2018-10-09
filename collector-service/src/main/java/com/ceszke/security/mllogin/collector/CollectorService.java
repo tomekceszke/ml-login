@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,7 @@ public class CollectorService {
         return collectorRepository.countBySessionId(sessionId) >= requiredSamples;
     }
 
+    @Transactional
     public void collect(int speed, String sessionId) {
         if (speed > 0) {
             collectorRepository.save(Sample.builder().sessionId(sessionId).speed(speed).build());
@@ -37,5 +39,10 @@ public class CollectorService {
     public int getNumberOfNeededSamples(String sessionId) {
         int neededSamples = (int) (requiredSamples - collectorRepository.countBySessionId(sessionId));
         return neededSamples < 0 ? 0 : neededSamples;
+    }
+
+    @Transactional
+    public void deleteAll(String sessionId) {
+        collectorRepository.deleteBySessionId(sessionId);
     }
 }

@@ -14,7 +14,6 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class Sample implements Serializable {
 
     @Id

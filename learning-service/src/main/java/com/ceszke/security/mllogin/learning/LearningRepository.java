@@ -10,4 +10,5 @@ public interface LearningRepository  extends JpaRepository<LearnedModel, Long> {
 
     List<LearnedModel> findAllBySessionId(String sessionId);
 
+    void deleteBySessionId(String sessionId);
 }

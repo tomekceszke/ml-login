@@ -9,4 +9,6 @@ public interface CollectorRepository extends JpaRepository<Sample, Long> {
     List<Sample> findAllBySessionId(String sessionId);
 
     long countBySessionId(String sessionId);
+
+    void deleteBySessionId(String sessionId);
 }
