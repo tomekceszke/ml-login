@@ -20,7 +20,7 @@
 
     <div class="alert alert-secondary small text-monospace" role="alert">
         Current typing speed: [[${session.speed}]] ms <br/>
-        <span th:utext="${@debugService.getModel()!=null} ? 'Learned typing speed (&mu;): '+${@debugService.getModel().mu}+' ms <br/> Variance (&sigma;<sup>2</sup>): '+${@debugService.getModel().sigma2}+'<br/> Threshold level (&epsilon;): '+${#numbers.formatDecimal(@debugService.getModel().epsilon,1,8)} + '<br/> <a href='+@{/delete}+'>Delete current model</a>'  : 'Still needs '+ ${@debugService.getNumberOfNeededSamples()+1}+ ' samples'"></span>
+        <span th:utext="${@debugService.getModel()!=null} ? 'Learned typing speed (&mu;): '+${@debugService.getModel().mu}+' ms <br/> Variance (&sigma;<sup>2</sup>): '+${@debugService.getModel().sigma2}+'<br/> Threshold level (&epsilon;): '+${#numbers.formatDecimal(@debugService.getModel().epsilon,1,9)} + '<br/> <a href='+@{/delete}+'>Delete current model</a>'  : 'Still needs '+ ${@debugService.getNumberOfNeededSamples()+1}+ ' samples'"></span>
     </div>
     <hr>
     <p class="mt-4 mb-3 text-muted text-center">
