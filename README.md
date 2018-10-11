@@ -3,7 +3,7 @@
 ### Proof of Concept: 
 improve login security by learning and checking additional features like typing speed
  
-![demo](doc/img/demo1.gif)
+![demo](doc/img/demo2.gif)
 
 This distributed application is responsible for:
 * collecting training data: `collector-service`
