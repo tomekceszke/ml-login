@@ -18,7 +18,7 @@ This distributed application is responsible for:
 - deploy as docker's containers on any cheap VPS and make the application **available for everyone** - _goal: know how docker deployment works from production point of view_  
 
 ## Live demo
-http://ml-login.ceszke.com
+http://ml-login.ceszke.com (currently offline)
 
 ## Tech Stack
 - Spring Boot
